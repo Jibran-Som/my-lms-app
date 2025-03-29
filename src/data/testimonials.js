@@ -1,14 +1,11 @@
-
-const courses = [
+const testimonials = [
     {
-        id: 1,
-        name: "Web Development",
-        instructor: "Dr. John Smith",
-        description: "Master HTML, CSS, and JavaScript.",
-        duration: "8 weeks",
-        image: "images/course1.jpg"
+        studentName: "Alice Johnson",
+        courseName: "Web Development",
+        review: "Excellent course structure!",
+        rating: 5
     },
-    // Add 9 more courses...
+    // Add 3 more testimonials...
 ];
     
-export default courses;
+export default testimonials;
