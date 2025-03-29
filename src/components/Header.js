@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 function Header(){
     return(
     <div>
-        <div class='header'>
+        <div className='header'>
             <img src={logo} alt="LMS Logo" style={{width: '100px', height: '100px'}} />
             <h1>LMS - Learning Management System</h1>
         </div>
-        <div class='nav'>
+        <div className='nav'>
             <Link to="/">Home</Link>  
             <Link to="/CoursesPage">Courses</Link> 
-            <Link to="#about">Login</Link>
+            <Link to="/LoginForm">Login</Link>
         </div>
     </div>
     
