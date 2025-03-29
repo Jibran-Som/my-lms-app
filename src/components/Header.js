@@ -1,8 +1,8 @@
 import React from 'react';
 import logo from '../images/logo.jpg';
 import '../index.css';
+import { Link } from 'react-router-dom';
 function Header(){
-
     return(
     <div>
         <div class='header'>
@@ -10,9 +10,9 @@ function Header(){
             <h1>LMS - Learning Management System</h1>
         </div>
         <div class='nav'>
-            <a href="login.html">Login</a> 
-            <a href="leaderboard.html">Leaderboard</a> 
-            <a href="#about">About LMS</a>
+            <Link to="/">Home</Link>  
+            <Link to="/CoursesPage">Courses</Link> 
+            <Link to="#about">Login</Link>
         </div>
     </div>
     
