@@ -8,7 +8,8 @@ function LoginForm() {
     const [authenticated, setAuthenticated] = useState(false);
     const navigate = useNavigate();
 
-    async function handleAuthentication() {
+    async function handleAuthentication(event) {
+        event.preventDefault();
         const data = await retrieveData();
         var usernameInput = username;
         var passwordInput = password;
@@ -19,9 +20,7 @@ function LoginForm() {
             if(data[i].username == usernameInput && data[i].email == passwordInput){
                 found = true;
                 alert('fo')
-                setTimeout(() => {
-                    navigate('/CoursePage');
-                }, 2000);
+                navigate('/CoursesPage');
                 break;
             }
         }
