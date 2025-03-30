@@ -1,6 +1,7 @@
 import React from "react";
 import Course from '../data/courses';
 import CourseItem from "./CourseItem";
+import './CourseCatalog.css';
 
 function CourseCatalog({ enrolledCourses, setEnrolledCourses }) {
     const handleEnroll = (course) => {

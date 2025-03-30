@@ -95,7 +95,7 @@ function LoginForm() {
                             />
                         </div>
                         <button id='login_button' type="submit" className="primary-button">Login</button>
-                        <a href="#" className="forgot-password">Forgot Password?</a>
+                        <a href="#" className="forgot-password" style={{ color: '#007bff', textDecoration: 'underline' }}>Forgot Password?</a>                    
                     </form>
                     {message.text && <DisplayStatus type={message.type} message={message.text} />}
                 </div>
