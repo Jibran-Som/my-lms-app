@@ -1,9 +1,8 @@
 import React from "react";
-import {useState, useEffect} from 'react';
 import EnrolledCourse from "./EnrolledCourse";
+import { useEffect } from "react";
 
-function EnrollmentList(){
-    const[enrolledCourses, setEnrolledCourses] = useState([]);
+function EnrollmentList({ enrolledCourses, setEnrolledCourses }) {
     let totalCredits = 0;
 
     useEffect(() => {
@@ -15,31 +14,38 @@ function EnrollmentList(){
     useEffect(() => {
         localStorage.setItem('enrolledCourses', JSON.stringify(enrolledCourses));
     },[enrolledCourses]);
-    
-    for(let i = 0; i < enrolledCourses.length; i++){
-        totalCredits += enrolledCourses[i].creditHours;
+
+    if (Array.isArray(enrolledCourses)) {
+        for (let i = 0; i < enrolledCourses.length; i++) {
+            totalCredits += enrolledCourses[i].creditHours;
+        }
     }
 
     const dropCourse = (courseID) => {
         const updatedCourses = [];
-        for(let i = 0; i < enrolledCourses.length; i++){
-            if(enrolledCourses[i].id !== courseID){
+        for (let i = 0; i < enrolledCourses.length; i++) {
+            if (enrolledCourses[i].id !== courseID) {
                 updatedCourses.push(enrolledCourses[i]);
             }
         }
         setEnrolledCourses(updatedCourses);
     };
 
-    return(
+    return (
         <div className="enrollment-list">
-            <h3>Enrolled Courses</h3>
-            <div>
-                {enrolledCourses.map((course) => (
-                    <EnrolledCourse key={course.id} course={course} onDrop={dropCourse} />
-                ))}
-            </div>
-            <h4>Total Credit Hours: {totalCredits}</h4>
+            <h2>Enrolled Courses</h2>
+            {Array.isArray(enrolledCourses) && enrolledCourses.length > 0 ? (
+                <div>
+                    {enrolledCourses.map((course) => (
+                        <EnrolledCourse key={course.id} course={course} onDrop={dropCourse} />
+                    ))}
+                    <h4>Total Credit Hours: {totalCredits}</h4>
+                </div>
+            ) : (
+                <p>No courses enrolled yet.</p>
+            )}
         </div>
     );
-};
+}
+
 export default EnrollmentList;

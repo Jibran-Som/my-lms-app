@@ -1,19 +1,17 @@
 import React from "react";
-import { useState } from "react";
 import Course from '../data/courses';
 import CourseItem from "./CourseItem";
 
-function CourseCatalog(){
-    const [enrolledCourses, setEnrolledCourses] = useState([]);
-    
+function CourseCatalog({ enrolledCourses, setEnrolledCourses }) {
     const handleEnroll = (course) => {
         if (!enrolledCourses.some(enrolledCourse => enrolledCourse.id === course.id)) {
-          setEnrolledCourses(prevState => [...prevState, course]);
+            setEnrolledCourses(prevState => [...prevState, course]);
         } else {
-          alert('You are already enrolled in this course.');
+            alert('You are already enrolled in this course.');
         }
-      };
-    return(
+    };
+
+    return (
         <div className="course-catalog">
             <h2>Course Catalog</h2>
             <div className="course-list">
@@ -23,5 +21,6 @@ function CourseCatalog(){
             </div>
         </div>
     );
-};
+}
+
 export default CourseCatalog;
