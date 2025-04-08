@@ -3,6 +3,9 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 
+CORS(app)
+
+
 # The students list
 students = [
     {
@@ -29,14 +32,13 @@ students = [
 ]
 
 
-@app.route('/backend', methods=['POST'])
+@app.route('/login', methods=['POST'])
 def backend():
     data = request.get_json()
     entered_username = data.get('username')
     entered_password = data.get('password')
 
-    
-    for user in users:
+    for user in students:  # Change from 'users' to 'students'
         if user['username'] == entered_username and user['password'] == entered_password:
             return jsonify({"success": True, "message": "Authentication successful"})
 

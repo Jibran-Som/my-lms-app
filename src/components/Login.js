@@ -15,57 +15,36 @@ function LoginForm() {
     const navigate = useNavigate();
 
     // Fetch user data on component mount
-    useEffect(() => {
-        async function fetchUsers() {
-            try {
-                const response = await fetch('https://jsonplaceholder.typicode.com/users');
-                const data = await response.json();
-                setUsers(data);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-                setMessage({ type: 'error', text: 'Failed to fetch user data' });
-            }
-        }
-        fetchUsers();
-    }, []);
+    function handleAuthentication(e) {
+        // alert("fetch")
+        e.preventDefault(); // Prevent default form submission
 
-    // Handle redirect after successful login
-    useEffect(() => {
-        if (authenticated) {
-            const timer = setTimeout(() => {
+        fetch('http://127.0.0.1:5000/login', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({'username':username, 'password':password}),   
+            })
+
+        
+
+        .then(async (response) => {
+
+            const data = await response.json();
+
+            if (data.success) {
+                setAuthenticated(true);
+                setMessage({ type: 'success', text: data.message });
                 navigate('/CoursesPage');
-            }, 2000);
-            return () => clearTimeout(timer);
-        }
-    }, [authenticated, navigate]);
+            } else {
+                throw new Error('Authentication failed');
+            }
 
-    async function handleAuthentication(event) {
-        event.preventDefault();
-        
-        // Input validation
-        if (!username || !password) {
-            setMessage({ type: 'error', text: 'Username and password cannot be empty' });
-            return;
-        }
-        
-        if (password.length < 8) {
-            setMessage({ type: 'error', text: 'Password must be at least 8 characters' });
-            return;
-        }
+        })
+        .catch(error => setMessage('Authentication failed. Incorrect username or password.'));};
 
-        const userFound = users.some(user => 
-            (user.username === username || user.email === username) && 
-            user.email === password // Using email as password
-        );
-
-        if (userFound) {
-            setAuthenticated(true);
-            setMessage({ type: 'success', text: 'Login successful! Redirecting...' });
-        } else {
-            setMessage({ type: 'error', text: 'Invalid username or password' });
-        }
-    }
-
+    
     return (
         <AuthContext.Provider value={{ username, authenticated }}>
             <div className="login-page">
