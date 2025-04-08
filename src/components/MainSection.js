@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Course from '../data/courses';
-import Testimonial from '../data/testimonials';
+import Course from '../Backend/courses';
+import Testimonial from '../Backend/testimonials';
 
 function MainSection() {
   const [randomCourses, setRandomCourses] = useState([]);

@@ -1,4 +1,4 @@
-const testimonials = [
+ testimonials = [
     {
       studentName: "Alice Johnson",
       courseName: "Web Development",
