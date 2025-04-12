@@ -1,5 +1,6 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AuthMessage from './AuthMessage';
 import './Login.css'
 
@@ -36,21 +37,26 @@ function LoginForm() {
             if (data.success) {
                 setAuthenticated(true);
                 setMessage({ type: 'success', text: data.message });
+                localStorage.setItem('userId', data.userId);
                 navigate('/CoursesPage');
             } else {
-                throw new Error('Authentication failed');
+                setMessage({ type: 'error', text: 'Authentication failed. Incorrect username or password.' });
             }
-
         })
-        .catch(error => setMessage('Authentication failed. Incorrect username or password.'));};
+        .catch(error => {
+            console.error("Login error:", error);
+            setMessage({ type: 'error', text: 'Something went wrong. Please try again.' });
+        });
+    
+    };
 
     
     return (
         <AuthContext.Provider value={{ username, authenticated }}>
-            <div className="login-page">
-                <div className="login-container">
+            <div className="login-container">
+                <div className="">
+                <h1>Login</h1>
                     <form id='login' onSubmit={handleAuthentication}>
-                        <h1>Login</h1>
                         <div className="form-group">
                             <label htmlFor='username'>Username:</label>
                             <input 
@@ -58,7 +64,7 @@ function LoginForm() {
                                 id='username' 
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)} 
-                                className="form-input"
+                                className=""
                                 required
                             />
                         </div>
@@ -69,12 +75,13 @@ function LoginForm() {
                                 id='password' 
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)} 
-                                className="form-input"
+                                className=""
                                 required
                             />
                         </div>
-                        <button id='login_button' type="submit" className="primary-button">Login</button>
-                        <a href="#" className="forgot-password" style={{ color: '#007bff', textDecoration: 'underline' }}>Forgot Password?</a>                    
+                        <button id='login_button' type="submit" className="">Login</button>
+                        <a href="#" className="forgot-password">Forgot Password?</a>
+                        <Link className="forgot-password" to="/SignupPage">Don't have an account? Sign up!</Link>
                     </form>
                     {message.text && <DisplayStatus type={message.type} message={message.text} />}
                 </div>

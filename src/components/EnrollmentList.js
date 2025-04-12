@@ -3,8 +3,14 @@ import EnrolledCourse from "./EnrolledCourse";
 import { useEffect } from "react";
 
 function EnrollmentList({ enrolledCourses, setEnrolledCourses }) {
+    const userId = localStorage.getItem('userId');
     let totalCredits = 0;
-
+    useEffect(() => {
+        window.onload = () => {
+            students_courses();
+        };
+    }, []);
+    
     useEffect(() => {
         const savedCourses = JSON.parse(localStorage.getItem("enrolledCourses"));
         if (savedCourses) {
@@ -21,15 +27,61 @@ function EnrollmentList({ enrolledCourses, setEnrolledCourses }) {
         }
     }
 
-    const dropCourse = (courseID) => {
-        const updatedCourses = [];
-        for (let i = 0; i < enrolledCourses.length; i++) {
-            if (enrolledCourses[i].id !== courseID) {
-                updatedCourses.push(enrolledCourses[i]);
+    // const dropCourse = (courseID) => {
+    //     const updatedCourses = [];
+    //     for (let i = 0; i < enrolledCourses.length; i++) {
+    //         if (enrolledCourses[i].id !== courseID) {
+    //             updatedCourses.push(enrolledCourses[i]);
+    //         }
+    //     }
+    //     setEnrolledCourses(updatedCourses);
+    // };
+
+    function dropCourse(courseID) {
+        fetch(`http://127.0.0.1:5000/drop/${userId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 'courseID': courseID, 'student_id': userId }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message); // Optional: show feedback
+                students_courses(); // refresh course list
+            } else {
+                alert(`Error: ${data.message}`);
             }
-        }
-        setEnrolledCourses(updatedCourses);
-    };
+        })
+        .catch(error => {
+            console.error('Drop error:', error);
+            alert("An error occurred while trying to drop the course.");
+        });
+    }
+
+    function students_courses() {
+        fetch(`http://127.0.0.1:5000/student_courses/${userId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            if (Array.isArray(data)) {
+                setEnrolledCourses(data);
+            } else {
+                setEnrolledCourses([]); // fallback if something unexpected happens
+            }
+        })
+        .catch((error) => {
+            console.error('Error fetching student courses:', error);
+            setEnrolledCourses([]); // fallback in case of error
+        });
+    }
+
+    
 
     return (
         <div className="enrollment-list">

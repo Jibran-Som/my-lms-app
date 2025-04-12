@@ -1,16 +1,38 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Course from '../Backend/courses';
 import CourseItem from "./CourseItem";
 import './CourseCatalog.css';
+//import students_courses from './EnrollmentList';
 
 function CourseCatalog({ enrolledCourses, setEnrolledCourses }) {
-    const handleEnroll = (course) => {
-        if (!enrolledCourses.some(enrolledCourse => enrolledCourse.id === course.id)) {
-            setEnrolledCourses(prevState => [...prevState, course]);
-        } else {
-            alert('You are already enrolled in this course.');
-        }
-    };
+    
+    const [course, setCourse] = useState('');
+    const userId = localStorage.getItem('userId');
+    
+    
+
+    function handleEnroll(course){
+        fetch(`http://127.0.0.1:5000/enroll/${userId}`, {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({'course':course, 'student_id': userId}),   
+            }) 
+            
+            .then(async (response) => {
+                const data = await response.json();
+                alert(data.message);  
+
+                if(data.success){
+                    setEnrolledCourses(prevState => [...prevState, course]);
+                }
+                
+            });
+        
+    
+    }
+
 
     return (
         <div className="course-catalog">
@@ -22,6 +44,7 @@ function CourseCatalog({ enrolledCourses, setEnrolledCourses }) {
             </div>
         </div>
     );
+
 }
 
 export default CourseCatalog;

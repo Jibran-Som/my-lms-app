@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import image from '../images/course1.jpg'
 
 function CourseItem({course, onEnroll}){
     const [hover, setHover] = useState(false);
@@ -14,7 +15,7 @@ function CourseItem({course, onEnroll}){
 
     return(
         <div className="course-item" onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
-            <img src={course.image} alt={course.name} style={{width: '100px', height: '100px'}} />
+            <img src={image} alt={course.name} style={{width: '100px', height: '100px'}} />
             <h4>{course.name}</h4>
             <p>Instructor: {course.instructor}</p>
             {hover && <p>{course.description}</p>}

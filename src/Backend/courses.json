@@ -1,3 +1,4 @@
+
 [
     {
       "id": 1,
@@ -5,7 +6,7 @@
       "instructor": "Dr. John Smith",
       "description": "Master HTML, CSS, and JavaScript.",
       "duration": "8 weeks",
-      "image": "courseImage",
+      "image": "../images/course1.jpg",
       "creditHours" : 3
     },
     {
@@ -14,7 +15,7 @@
         "instructor": "Prof. Wade Wilson",
         "description": "Learn about network protocols, routing, and network security.",
         "duration": "10 weeks",
-        "image": "courseImage",
+        "image": "../images/course1.jpg",
         "creditHours" : 3
     },
     {
@@ -23,7 +24,7 @@
       "instructor": "Dr. Steve Austin",
       "description": "Learn fundamental algorithms and data structures in computer science.",
       "duration": "10 weeks",
-      "image": "courseImage",
+      "image": "../images/course1.jpg",
       "creditHours" : 3
     },
     {
@@ -32,7 +33,7 @@
       "instructor": "Prof. Michael Brown",
       "description": "Study the architecture and concepts of modern operating systems.",
       "duration": "8 weeks",
-      "image": "courseImage",
+      "image": "../images/course1.jpg",
       "creditHours" : 3
     },
     {
@@ -41,7 +42,7 @@
       "instructor": "Dr. Emily White",
       "description": "Learn the core principles of software engineering and best practices.",
       "duration": "10 weeks",
-      "image": "courseImage",
+      "image": "../images/course1.jpg",
       "creditHours" : 3
     },
     {
@@ -50,7 +51,7 @@
       "instructor": "Prof. David Lee",
       "description": "Understand the basics of machine learning and its applications.",
       "duration": "12 weeks",
-      "image": "courseImage",
+      "image": "../images/course1.jpg",
       "creditHours" : 3
     },
     {
@@ -59,7 +60,7 @@
       "instructor": "Dr. William Clark",
       "description": "Learn about relational databases, SQL, and database design.",
       "duration": "9 weeks",
-      "image": "courseImage",
+      "image": "../images/course1.jpg",
       "creditHours" : 3
     },
     {
@@ -68,7 +69,7 @@
       "instructor": "Prof. Maria Rodriguez",
       "description": "Explore cloud platforms and architectures like AWS, Azure, and Google Cloud.",
       "duration": "8 weeks",
-      "image": "courseImage",
+      "image": "../images/course1.jpg",
       "creditHours" : 3
     },
     {
@@ -77,7 +78,7 @@
       "instructor": "Dr. James Evans",
       "description": "Learn the basics of cybersecurity, encryption, and network security.",
       "duration": "8 weeks",
-      "image": "courseImage",
+      "image": "../images/course1.jpg",
       "creditHours" : 3
     },
     {
@@ -86,7 +87,7 @@
       "instructor": "Dr. Tom Cruise",
       "description": "Study the principles of AI, including search algorithms and neural networks.",
       "duration": "12 weeks",
-      "image": "images/course1.jpg",
+      "image": "../images/course1.jpg",
       "creditHours" : 3
     }
   ]

@@ -1,52 +1,80 @@
-.login-page {
+.login-container {
+    padding: 20px;
+    text-align: center;
+    align-items: center;
+    
+    margin: 20px auto;
+    max-width: 90%;
+}
+
+#login {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    align-items: center;
+    background-color: #d4d4d4;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    padding: 30px;
+    margin: 0px 150px 0px 150px;
+    max-width: 100%;
 }
 
-.login-container {
-    max-width: 400px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+#login h1 {
+    color: #004080;
 }
 
-.form-group {
-    margin-bottom: 1.5rem;
+input[type="text"],
+input[type="password"] {
+    width: 250px;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 3px solid #b2b2b2;
+    background-color: lightyellow;
 }
 
-.form-input {
-    width: 100%;
-    padding: 0.5rem;
-    margin-top: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.primary-button {
+#login_button {
     background-color: #4CAF50;
     color: white;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 4px;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+    opacity: 0.5;
     cursor: pointer;
-    width: 100%;
-    margin-bottom: 1rem;
+    border: none;
+    width: 100px;
+}
+
+#login_button:hover {
+    background-color: #45A049;
+    opacity: 1.0;
 }
 
 .forgot-password {
     display: block;
-    text-align: center;
-    color: #666;
-    text-decoration: none;
+    color: #007bff;
+    margin-top: 10px;
+    text-decoration: underline;
+    cursor: pointer;
 }
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center; 
+    margin-bottom: 10px;
+    text-align: center;
+}
+
 
 .status-message {
     padding: 1rem;
-    margin: 1rem 0;
+    margin: 1rem auto;
     border-radius: 4px;
+    width: 60%;
+    text-align: center;
+    font-weight: bold;
 }
 
 .status-message.success {
@@ -58,3 +86,5 @@
     background-color: #f2dede;
     color: #a94442;
 }
+
+

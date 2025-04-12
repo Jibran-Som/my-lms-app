@@ -5,7 +5,7 @@ import Testimonial from '../Backend/testimonials';
 function MainSection() {
   const [randomCourses, setRandomCourses] = useState([]);
   const [randomTestimonials, setRandomTestimonials] = useState([]);
-
+  // Math.random exists
   // Function to get random courses
   const getRandomCourses = () => {
     let randomCoursesArray = [];
@@ -29,10 +29,34 @@ function MainSection() {
     setRandomTestimonials(randomTestimonialsArray);
   };
 
+  function randomTestimonialsFromBackend(){
+
+    fetch('http://127.0.0.1:5000/testimonials', {
+      method: 'GET',
+      headers: {
+      'Content-Type': 'application/json',
+      },
+      })
+
+      .then(response => response.json())
+      .then(data => {
+        setRandomTestimonials(data); 
+      })
+      .catch(err => {
+        console.error("Failed to fetch testimonials:", err);
+      });
+
+    
+  }
+
   useEffect(() => {
     getRandomCourses();
-    getRandomTestimonials();
+    randomTestimonialsFromBackend();
+
   }, []);
+
+
+
 
   return (
     <section className="about">
