@@ -1,3 +1,7 @@
+# Jibran Somroo UCID: 30208390
+# Ezana Abebe UCID: 30208006
+
+
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import random
